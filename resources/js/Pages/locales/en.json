@@ -1,0 +1,226 @@
+{
+  "home": "Home",
+  "about": "About",
+  "menu": "Menu",
+  "shop": "Shop",
+  "blogs": "Blogs",
+  "contactUs": "Contact Us",
+  "call":"Call 12478",
+  "btn":"Order Now",
+  "cart":"Add To Cart",
+  "products":"Products",
+  "next":"Next",
+  "Profile":"Profile",
+  "Dashboard":"Dashboard",
+  "Hello,":"Hello,",
+  "Get in touch with us":"Get in touch with us",
+  "Elmansoura Branch":"Elmansoura Branch",
+  "Ph":"Phone:",
+  "em":"Email",
+  "ad":"Address:",
+  "Select a category":"Select a category",
+  "login":"Login",
+ "removed":"removed",
+  "Don't have an account?":"Don't have an account?",
+  "Sign Up":"Sign Up",
+  "Already have an account?":" Already have an account?",
+  "h":"Working Hours: 8 am to 2 am",
+  "send":"send",
+  "previous":"previous",
+    "status": "Coming Soon",
+ 
+    "categories": {
+      "heading": "Our Categories",
+      "specialCoffee": {
+        "name": "Special Coffee",
+        "description": "Enjoy the finest coffee blends.",
+        "status": "Coming Soon"
+      },
+      "desserts": {
+        "name": "Desserts",
+        "description": "Indulge in sweet treats.",
+        "status": "Available"
+      },
+      "beverages": {
+        "name": "Beverages",
+        "description": "Refreshing drinks for any time.",
+        "status": "Available"
+      },
+      "salad": {
+        "name": "Salad",
+        "description": "Healthy and fresh options.",
+        "status": "Available"
+      }
+    },
+  
+  
+
+    "new_item": {
+      "title": "New Item",
+      "description": "Cool Down with the All-New",
+      "flavor": "[Flavor]",
+      "details": "Our [Flavor] Frappuccino is a rich, icy blend of premium coffee and your favorite flavor, topped with whipped cream for an extra touch of sweetness.",
+      "order_now": "Order Now"
+    
+  },
+  
+    "workWithUs": {
+      "heading": "Work with us!",
+      "description": "Interested in joining our team? We are always looking for passionate and talented individuals in the coffee and hospitality industry.",
+      "imageAlt": "Team Illustration",
+      "formDescription": "If you'd like to work with us, please fill out the form below, and we will review your application and get back to you soon."
+    },
+    "formFields": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "chooseFile": "Choose file",
+      "uploadCV": "Upload CV",
+      "submit": "Submit"
+    }
+  , "productSlider": {
+    "title": "What are you choosing?",
+    "bestSelling": "Best Selling",
+    "newArrivals": "New Arrivals",
+    "recommendations": "Recommendations"
+  }
+  , 
+    "testimonialSlider": {
+      "title": "What our clients say"
+    },
+    
+      "footer": {
+        "subscribe": "Subscribe to our newsletter",
+        "emailPlaceholder": "Email",
+        "followUs": "Follow us",
+        "pages": "Page",
+        
+        "termsConditions": "Terms & Conditions",
+        "privacyPolicy": "Privacy Policy"
+      }
+    
+    
+  
+      ,
+        "whoWeAreTitle": "Who We Are",
+        "whoWeAreText": "Our story began in 1930 with an enchanting trip to Damascus, which inspired Abdel Rahim Koueider's father to make the most delicious sweets he knew, passed down from generation to generation. Using simple ingredients like semolina, sugar, milk, and butter, we have delighted lovers of delicious sweets rich in the original taste of oriental sweets and ice cream.",
+        "aSweetStoryTitle": "A Sweet Story of Indulgence and Inspiration",
+        "aSweetStoryText": "Our story began in 1930 with an enchanting trip to Damascus, which inspired Abdel Rahim Koueider's father to make the most delicious sweets he knew, passed down from generation to generation. Using simple ingredients like semolina, sugar, milk, and butter, we have delighted lovers of delicious sweets rich in the original taste of oriental sweets and ice cream."
+      
+        ,
+          "coffePointTitle": "Coffee Point",
+          "coffePointDescription": "Our story began in 1930 with an enchanting trip to Damascus, which inspired Abdel Rahim Koueider's father to make the most delicious and exquisite sweets he knew, passed down from generation to generation. Using simple ingredients such as semolina, sugar, milk, and butter, we were able to delight lovers of delicious sweets rich with the original taste of oriental sweets and ice cream.",
+          "theOriginalTasteOfCoffeeTitle": "The Original Taste of Coffee",
+          "theOriginalTasteOfCoffeeDescription": "Our story began in 1930 with an enchanting trip to Damascus, which inspired Abdel Rahim Koueider's father to make the most delicious and exquisite sweets he knew, passed down from generation to generation. Using simple ingredients such as semolina, sugar, milk, and butter, we were able to delight lovers of delicious sweets rich with the original taste of oriental sweets and ice cream."
+        
+          ,
+            "moreThan5YearsExperience": "More than 5 years experience"
+          
+          ,
+           
+            "your_cart_is_empty":"your cart is empty",
+ "shoppingcart":"shopping cart",
+ "Your favorites list is empty":"Your favorites list is empty",
+ "Favorites":"Favorites",
+ "Show All Favorites":" Show All Favorites",
+  "not":"Not Found",
+  "Sub total:":"Sub total:"
+  , 
+  "pr":"Price:",
+  "Order Resent":"Order Resent",
+  "Full Address:":"Full Address:",
+  "Save Changes":"Save Changes",
+  "Save..":"Save..",
+  "User Activity":"  User Activity",
+  "Logout":"Logout",
+  "User Information":"User Information",
+  "Your Favorites":"Your Favorites",
+  "quantity":"quantity",
+  "Submit Order":" Submit Order" ,"order_details":"order details"
+  ,
+    "privacy_policy": "Privacy Policy",
+    "commitment_to_privacy": "At Coffee Point, we are committed to protecting the privacy and security of your personal information. This policy outlines how we collect, use, and disclose the information we gather from you when you visit our website or use our services.",
+    "information_we_collect": "Information We Collect",
+    "personal_information": "Personal Information you voluntarily provide, such as:",
+    "automatic_information": "Automatic Information about your device and website usage, including:",
+    "how_we_use_information": "How We Use Your Information",
+    "use_purposes": [
+      "To process and fulfill your orders.",
+      "To communicate with you about your orders, account, or inquiries.",
+      "To provide customer support and assistance.",
+      "To improve our products, services, and website.",
+      "To send promotional offers, newsletters, or marketing materials (you can opt-out anytime).",
+      "To detect, prevent, and address technical issues or fraud.",
+      "To comply with legal obligations."
+    ],
+    "how_we_protect_information": "How We Protect Your Information",
+    "information_protection": "We take reasonable measures to safeguard the confidentiality, integrity, and security of your personal information. However, please note that no method of online transmission or electronic storage is 100% secure, and we cannot guarantee absolute security.",
+    "disclosure_of_information": "Disclosure of Your Information",
+    "disclosure_scenarios": [
+      "Service Providers and Business Partners: To assist in delivering our products and services.",
+      "Government Authorities: To comply with legal obligations or legitimate requests.",
+      "Mergers or Acquisitions: As part of transferring assets during business restructuring."
+    ],
+    "rights_and_choices": "Your Rights and Choices",
+    "rights_details": "You have the right to access, update, or delete your personal information at any time by contacting us through the contact details below.",
+    "opt_out": "You can opt out of receiving promotional communications by following the instructions provided in the communication or contacting us directly.",
+    "account_deletion": "Account Deletion",
+    "delete_account_instructions": "You can delete your account by navigating to: Your Account -> Settings -> Delete Account.",
+    "policy_updates": "Policy Updates",
+    "update_details": "We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. Any significant updates will be communicated by posting the revised policy on our website.",
+    "contact_us": "Contact Us",
+    "contact_details": "If you have any questions, concerns, or complaints about this Privacy Policy or how we handle your personal information, please contact us via:",
+    "phone": "Phone: ",
+    "emaill": "Email: ",
+    "facebook_app_management": "You can also manage and remove the \"Coffee Point\" application associated with your Facebook account by navigating to: Settings & Privacy -> Settings -> Apps and Websites."
+  
+    ,
+    
+      "get_in_touch": "Get in touch with us",
+      "placeholder_email": "Enter your email",
+      "placeholder_name": "Enter your name",
+      "placeholder_subject": "Enter the subject",
+      "placeholder_content": "Enter your message",
+   "pas":"password",
+      "email_sent_success": "Email sent successfully!",
+      "email_send_failed": "Failed to send email.",
+      "email_error_occurred": "An error occurred while sending the email."
+,
+"subject": "Subject",
+"content": "Message Content",
+  "Enter your name": "Enter your name",
+  "Enter your email": "Enter your email",
+  "Enter your phone": "Enter your phone",
+  "Enter your password": "Enter your password",
+  "Confirm your password": "Confirm your password",
+  "Login": "Login",
+  "Passwords do not match": "Passwords do not match",
+  "Signup successful! Redirecting to login...": "Signup successful! Redirecting to login...",
+  "Signup failed. Please check your details and try again.": "Signup failed. Please check your details and try again."
+,
+  
+    "Suggestions":"Suggestions",
+      "terms_and_conditions": "Terms and Conditions",
+ 
+      "privacy_details": "At Coffee Point, we are committed to protecting your privacy. All personal information provided to our website will remain confidential and will not be shared with any third parties except governmental authorities if required by law. Users have the right to access, update, or delete their personal information at any time. You can opt out of receiving promotional emails by following the instructions in the email or contacting us directly. Account Deletion: Users can delete their accounts by navigating to: Your Account -> Settings -> Delete Account.",
+      "intellectual_property": "2. Intellectual Property Rights and Trademarks",
+      "intellectual_property_details": "All content on the Coffee Point website, including text, graphics, logos, images, icons, audio clips, data compilations, and software, is owned by Coffee Point. Any unauthorized copying, duplication, resale, or modification is strictly prohibited without prior written consent. Trademarks and logos displayed on the website are the property of Coffee Point or its partners and are protected under local and international trademark laws.",
+      "content_ownership": "3. Content Ownership",
+      "content_ownership_details": "All images, graphics, videos, music, audio files, and text on the website are considered part of Coffee Point’s content and are fully protected under intellectual property laws.",
+      "third_party_links_cookies": "4. Third-Party Links and Cookies",
+      "third_party_links_cookies_details": "Coffee Point uses cookies to enhance the user experience: Cookies store login details and preferences for faster access. Cookies help personalize services and remember user preferences. Users can modify cookie preferences via their browser settings.",
+      "website_usage": "5. Website Usage",
+      "website_usage_details": "By accessing the Coffee Point website, users agree to abide by its terms and conditions. Users are encouraged to create accounts for an improved shopping experience, though purchasing as a guest is also an option. Accurate and complete personal information is required for order processing.",
+      "ordering_availability": "6. Ordering and Availability",
+      "ordering_availability_details": "By placing an order on Coffee Point, users are agreeing to purchase the product at the listed price, which includes VAT. Orders are subject to availability. If a product is unavailable, users are entitled to a refund, minus applicable administrative fees. Coffee Point reserves the right to decline or cancel orders at its discretion.",
+      "payment_terms": "7. Payment Terms",
+      "payment_terms_details": "Multiple payment options are available, including: Cash on delivery. Credit and debit cards. Loyalty points from Coffee Point’s marketing programs.",
+      "return_exchange_policy": "8. Return and Exchange Policy",
+      "return_exchange_policy_details": "Returns and exchanges are governed by the company’s internal policies and conditions for product preservation and storage. Policies are subject to periodic updates.",
+      "modification_of_terms": "9. Modification of Terms",
+      "modification_of_terms_details": "Coffee Point reserves the right to amend its terms and conditions without prior notice. Continued use of the website indicates acceptance of the new terms.",
+      "disputes": "10. Disputes",
+      "disputes_details": "Any disputes arising from the use of Coffee Point’s website will be governed by Egyptian law, with Arabic as the official language of arbitration."
+     
+    
+}

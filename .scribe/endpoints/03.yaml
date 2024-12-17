@@ -1,0 +1,69 @@
+name: '2 Products'
+description: |-
+
+  APIs for viewing products
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/products
+    metadata:
+      groupName: '2 Products'
+      groupDescription: |-
+
+        APIs for viewing products
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get a paginated list of products'
+      description: |-
+        No auth required.
+        If the quantity of a product is 0 or less, you cannot buy or add it to the cart.
+        Pagination: add ?page parameter to the request.
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+             {
+               "name": "Product 1",
+               "description": "Description of Product 1",
+               "price": "10.00 $",
+               "quantity": 100
+             },
+             {
+               "name": "Product 2",
+               "description": "Description of Product 2",
+               "price": "20.00 $",
+               "quantity": 50
+             }
+           ],
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+           "message": "No products found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

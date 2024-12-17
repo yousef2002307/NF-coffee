@@ -1,0 +1,4101 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/v1/register:
+    post:
+      summary: 'Register a new user'
+      operationId: registerANewUser
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'User registered successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'User registered successfully'
+      tags:
+        - '1 Security'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The user's name"
+                  example: eum
+                  nullable: false
+                email:
+                  type: string
+                  description: "The user's email"
+                  example: koepp.shania@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: "The user's password"
+                  example: 'tn^nC-pR".GRiuKr'
+                  nullable: false
+                phone:
+                  type: string
+                  description: "The user's phone number"
+                  example: omnis
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+                - phone
+      security: []
+  /api/v1/login:
+    post:
+      summary: 'Login a user'
+      operationId: loginAUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  token: string
+                properties:
+                  token:
+                    type: string
+                    example: string
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Invalid credentials'
+                properties:
+                  message:
+                    type: string
+                    example: 'Invalid credentials'
+      tags:
+        - '1 Security'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: "The user's email"
+                  example: catherine.beatty@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: "The user's password"
+                  example: 'gv78hVk!/_]{zq'
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/loginphone:
+    post:
+      summary: ''
+      operationId: postApiV1Loginphone
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '1 Security'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: 'Must not be greater than 15 characters.'
+                  example: bxaxhpzr
+                  nullable: false
+              required:
+                - phone
+      security: []
+  /api/v1/editprofile:
+    post:
+      summary: ''
+      operationId: postApiV1Editprofile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - '1 Security'
+      security: []
+  /api/v1/logout:
+    post:
+      summary: 'Logout a user'
+      operationId: logoutAUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Logged out'
+                properties:
+                  message:
+                    type: string
+                    example: 'Logged out'
+      tags:
+        - '1 Security'
+      security: []
+  /api/v1/products:
+    get:
+      summary: 'Get a paginated list of products'
+      operationId: getAPaginatedListOfProducts
+      description: "No auth required.\nIf the quantity of a product is 0 or less, you cannot buy or add it to the cart.\nPagination: add ?page parameter to the request."
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "[\n   {\n     \"name\": \"Product 1\",\n     \"description\": \"Description of Product 1\",\n     \"price\": \"10.00 $\",\n     \"quantity\": 100\n   },\n   {\n     \"name\": \"Product 2\",\n     \"description\": \"Description of Product 2\",\n     \"price\": \"20.00 $\",\n     \"quantity\": 50\n   }\n ],"
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No products found'
+                properties:
+                  message:
+                    type: string
+                    example: 'No products found'
+      tags:
+        - '2 Products'
+      security: []
+  /api/v1/menu:
+    get:
+      summary: 'Get a list of all menus'
+      operationId: getAListOfAllMenus
+      description: 'No auth required'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  menus:
+                    -
+                      id: 1
+                      name: 'Menu 1'
+                      image: images/menu1.jpg
+                      description: 'Description of Menu 1'
+                    -
+                      id: 2
+                      name: 'Menu 2'
+                      image: images/menu2.jpg
+                      description: 'Description of Menu 2'
+                  lastMenu:
+                    id: 1
+                    name: 'Menu 1'
+                    image: images/menu1.jpg
+                    description: 'Description of Menu 1'
+                properties:
+                  menus:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Menu 1'
+                        image: images/menu1.jpg
+                        description: 'Description of Menu 1'
+                      -
+                        id: 2
+                        name: 'Menu 2'
+                        image: images/menu2.jpg
+                        description: 'Description of Menu 2'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Menu 1'
+                        image:
+                          type: string
+                          example: images/menu1.jpg
+                        description:
+                          type: string
+                          example: 'Description of Menu 1'
+                  lastMenu:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Menu 1'
+                      image:
+                        type: string
+                        example: images/menu1.jpg
+                      description:
+                        type: string
+                        example: 'Description of Menu 1'
+      tags:
+        - '3 Menus'
+      security: []
+    post:
+      summary: 'Create a new menu'
+      operationId: createANewMenu
+      description: 'Admin auth required'
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Menu created successfully'
+                  data:
+                    id: 1
+                    name: 'Menu 1'
+                    image: images/menu1.jpg
+                    description: 'Description of Menu 1'
+                properties:
+                  message:
+                    type: string
+                    example: 'Menu created successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Menu 1'
+                      image:
+                        type: string
+                        example: images/menu1.jpg
+                      description:
+                        type: string
+                        example: 'Description of Menu 1'
+      tags:
+        - '3 Menus'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The menu's name"
+                  example: id
+                  nullable: false
+                image:
+                  type: image
+                  description: "The menu's image"
+                  example: magnam
+                  nullable: false
+                description:
+                  type: string
+                  description: "The menu's description"
+                  example: 'Repellat illo rerum facere minima aut consequuntur iusto.'
+                  nullable: false
+              required:
+                - name
+                - image
+                - description
+      security: []
+  '/api/v1/menu/{id}':
+    get:
+      summary: 'Get a single menu by ID'
+      operationId: getASingleMenuByID
+      description: 'No auth required'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  name: 'Menu 1'
+                  image: images/menu1.jpg
+                  description: 'Description of Menu 1'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Menu 1'
+                  image:
+                    type: string
+                    example: images/menu1.jpg
+                  description:
+                    type: string
+                    example: 'Description of Menu 1'
+      tags:
+        - '3 Menus'
+      security: []
+    put:
+      summary: 'Update a single menu by ID'
+      operationId: updateASingleMenuByID
+      description: 'Admin auth required'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Menu updated successfully'
+                  data:
+                    id: 1
+                    name: 'Menu 1'
+                    image: images/menu1.jpg
+                    description: 'Description of Menu 1'
+                properties:
+                  message:
+                    type: string
+                    example: 'Menu updated successfully'
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Menu 1'
+                      image:
+                        type: string
+                        example: images/menu1.jpg
+                      description:
+                        type: string
+                        example: 'Description of Menu 1'
+      tags:
+        - '3 Menus'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: "The menu's name"
+                  example: debitis
+                  nullable: false
+                image:
+                  type: image
+                  description: "The menu's image"
+                  example: maiores
+                  nullable: false
+                description:
+                  type: string
+                  description: "The menu's description"
+                  example: 'Ipsum praesentium quae iure quos eum dicta.'
+                  nullable: false
+              required:
+                - name
+                - image
+                - description
+      security: []
+    delete:
+      summary: 'Delete a single menu by ID'
+      operationId: deleteASingleMenuByID
+      description: 'Admin auth required'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Menu deleted successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Menu deleted successfully'
+      tags:
+        - '3 Menus'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menu.'
+        example: laborum
+        required: true
+        schema:
+          type: string
+  /api/v1/activitylog:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      log: 'User logged in'
+                      user_id: 1
+                      created_at: '2024-11-19T16:38:04.000000Z'
+                      updated_at: '2024-11-19T16:38:04.000000Z'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        log: 'User logged in'
+                        user_id: 1
+                        created_at: '2024-11-19T16:38:04.000000Z'
+                        updated_at: '2024-11-19T16:38:04.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        log:
+                          type: string
+                          example: 'User logged in'
+                        user_id:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2024-11-19T16:38:04.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-11-19T16:38:04.000000Z'
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Internal Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Internal Server Error'
+      tags:
+        - '111 Activity Log'
+      security: []
+  '/api/v1/activitylog/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 1
+                  log: 'User logged in'
+                  user_id: 1
+                  created_at: '2024-11-19T16:38:04.000000Z'
+                  updated_at: '2024-11-19T16:38:04.000000Z'
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  log:
+                    type: string
+                    example: 'User logged in'
+                  user_id:
+                    type: integer
+                    example: 1
+                  created_at:
+                    type: string
+                    example: '2024-11-19T16:38:04.000000Z'
+                  updated_at:
+                    type: string
+                    example: '2024-11-19T16:38:04.000000Z'
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Activity not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Activity not found'
+      tags:
+        - '111 Activity Log'
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses:
+        204:
+          description: ''
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Activity not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Activity not found'
+      tags:
+        - '111 Activity Log'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the activity.'
+        example: '1'
+        required: true
+        schema:
+          type: string
+  /api/r:
+    get:
+      summary: ''
+      operationId: getApiR
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 2
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/test:
+    get:
+      summary: ''
+      operationId: getApiV1Test
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/order:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: ''
+                  example: 4
+                  nullable: false
+                quantity:
+                  type: integer
+                  description: ''
+                  example: 6
+                  nullable: false
+                price:
+                  type: number
+                  description: ''
+                  example: 282.1912
+                  nullable: false
+                phone:
+                  type: string
+                  description: ''
+                  example: aliquam
+                  nullable: false
+                addressIndetail:
+                  type: string
+                  description: ''
+                  example: facilis
+                  nullable: false
+              required:
+                - product_id
+                - quantity
+                - price
+                - phone
+                - addressIndetail
+      security: []
+  /api/v1/order/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/order/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: ''
+                  example: aperiam
+                  nullable: false
+                addressIndetail:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: false
+                price:
+                  type: string
+                  description: ''
+                  example: quia
+                  nullable: false
+                quantity:
+                  type: string
+                  description: ''
+                  example: facilis
+                  nullable: false
+              required:
+                - phone
+                - addressIndetail
+                - price
+                - quantity
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the order.'
+        example: neque
+        required: true
+        schema:
+          type: string
+  '/api/v1/order/{order}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: order
+        description: 'The order.'
+        example: ad
+        required: true
+        schema:
+          type: string
+  /api/v1/blog:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: civndvzlgfszaimorm
+                  nullable: false
+                content:
+                  type: string
+                  description: ''
+                  example: et
+                  nullable: false
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Doloremque est dolorem voluptatem.'
+                  nullable: true
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 5
+                  nullable: false
+              required:
+                - title
+                - content
+                - image
+                - user_id
+      security: []
+  '/api/v1/blog/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the blog.'
+        example: rerum
+        required: true
+        schema:
+          type: string
+  '/api/v1/updblog/{id}':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: mijca
+                  nullable: false
+                content:
+                  type: string
+                  description: ''
+                  example: sed
+                  nullable: false
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image. Must not be greater than 2048 kilobytes.'
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Quia velit fuga amet suscipit.'
+                  nullable: true
+                user_id:
+                  type: integer
+                  description: ''
+                  example: 15
+                  nullable: false
+              required:
+                - title
+                - content
+                - user_id
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the updblog.'
+        example: et
+        required: true
+        schema:
+          type: string
+  /api/v1/allblog:
+    get:
+      summary: ''
+      operationId: getApiV1Allblog
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data:
+                    -
+                      id: 2
+                      user_id: 8
+                      image: /images/download.jpeg
+                      title: 'Sequi nihil debitis velit ratione voluptatem numquam et et.'
+                      description: 'Necessitatibus et eum inventore mollitia. Aut deserunt et accusamus autem vel. Aliquid inventore et error labore dolor exercitationem possimus. Et veritatis alias deserunt ratione eum non qui et.'
+                      content: 'Autem ipsam molestiae omnis eveniet reprehenderit aperiam rem. Voluptate et pariatur soluta aspernatur explicabo est. Repudiandae non dolorum assumenda.'
+                      created_at: '2024-10-30T09:08:30.000000Z'
+                      updated_at: '2024-10-30T09:08:30.000000Z'
+                      image_url: /images/download.jpeg
+                    -
+                      id: 3
+                      user_id: 9
+                      image: /images/download.jpeg
+                      title: 'Quod ut vero eius iste.'
+                      description: 'Minima adipisci ipsam aliquid eligendi praesentium perspiciatis. Atque officiis accusamus voluptas itaque consequatur voluptatum nulla. Perspiciatis esse quod et provident.'
+                      content: 'Vero quae beatae ut id et ullam. Dolorem eveniet est qui consectetur sint cum. Modi maiores et dolor dolores similique asperiores fugit dolorem. Repudiandae pariatur aut possimus qui.'
+                      created_at: '2024-10-30T09:08:30.000000Z'
+                      updated_at: '2024-10-30T09:08:30.000000Z'
+                      image_url: /images/download.jpeg
+                    -
+                      id: 4
+                      user_id: 10
+                      image: /images/download.jpeg
+                      title: 'Tempore recusandae consequuntur laudantium et.'
+                      description: 'Error ut reiciendis dolor placeat aut explicabo itaque. Odit iste non doloremque iusto laboriosam. Aliquam sapiente vel ut omnis in in. In aut blanditiis iure voluptatibus nihil rerum.'
+                      content: 'Odio ex occaecati tempore sit. Sed quas saepe cumque est magni ut rerum omnis. Labore quidem temporibus expedita.'
+                      created_at: '2024-10-30T09:08:30.000000Z'
+                      updated_at: '2024-10-30T09:08:30.000000Z'
+                      image_url: /images/download.jpeg
+                    -
+                      id: 5
+                      user_id: 11
+                      image: /images/download.jpeg
+                      title: 'Qui molestiae voluptatibus voluptatibus nostrum eum.'
+                      description: 'Dolorum vel error cum sunt officia dicta. Maiores iusto sed quidem voluptas.'
+                      content: 'Sunt fugiat eaque pariatur exercitationem. Beatae eum soluta occaecati dicta. Asperiores nobis illum porro maxime pariatur.'
+                      created_at: '2024-10-30T09:08:30.000000Z'
+                      updated_at: '2024-10-30T09:08:30.000000Z'
+                      image_url: /images/download.jpeg
+                    -
+                      id: 6
+                      user_id: 1
+                      image: /images/download.jpeg
+                      title: test
+                      description: 'Harum error rerum dignissimos consequatur optio inventore sit. Inventore sunt deserunt eaque. Voluptates quibusdam inventore voluptatibus itaque quisquam explicabo.'
+                      content: test
+                      created_at: '2024-10-30T09:08:30.000000Z'
+                      updated_at: '2024-10-30T10:23:54.000000Z'
+                      image_url: /images/download.jpeg
+                  first_page_url: 'http://localhost/api/v1/allblog?page=1'
+                  from: 1
+                  last_page: 6
+                  last_page_url: 'http://localhost/api/v1/allblog?page=6'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=2'
+                      label: '2'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=3'
+                      label: '3'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=4'
+                      label: '4'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=5'
+                      label: '5'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=6'
+                      label: '6'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/allblog?page=2'
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: 'http://localhost/api/v1/allblog?page=2'
+                  path: 'http://localhost/api/v1/allblog'
+                  per_page: 5
+                  prev_page_url: null
+                  to: 5
+                  total: 29
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        user_id: 8
+                        image: /images/download.jpeg
+                        title: 'Sequi nihil debitis velit ratione voluptatem numquam et et.'
+                        description: 'Necessitatibus et eum inventore mollitia. Aut deserunt et accusamus autem vel. Aliquid inventore et error labore dolor exercitationem possimus. Et veritatis alias deserunt ratione eum non qui et.'
+                        content: 'Autem ipsam molestiae omnis eveniet reprehenderit aperiam rem. Voluptate et pariatur soluta aspernatur explicabo est. Repudiandae non dolorum assumenda.'
+                        created_at: '2024-10-30T09:08:30.000000Z'
+                        updated_at: '2024-10-30T09:08:30.000000Z'
+                        image_url: /images/download.jpeg
+                      -
+                        id: 3
+                        user_id: 9
+                        image: /images/download.jpeg
+                        title: 'Quod ut vero eius iste.'
+                        description: 'Minima adipisci ipsam aliquid eligendi praesentium perspiciatis. Atque officiis accusamus voluptas itaque consequatur voluptatum nulla. Perspiciatis esse quod et provident.'
+                        content: 'Vero quae beatae ut id et ullam. Dolorem eveniet est qui consectetur sint cum. Modi maiores et dolor dolores similique asperiores fugit dolorem. Repudiandae pariatur aut possimus qui.'
+                        created_at: '2024-10-30T09:08:30.000000Z'
+                        updated_at: '2024-10-30T09:08:30.000000Z'
+                        image_url: /images/download.jpeg
+                      -
+                        id: 4
+                        user_id: 10
+                        image: /images/download.jpeg
+                        title: 'Tempore recusandae consequuntur laudantium et.'
+                        description: 'Error ut reiciendis dolor placeat aut explicabo itaque. Odit iste non doloremque iusto laboriosam. Aliquam sapiente vel ut omnis in in. In aut blanditiis iure voluptatibus nihil rerum.'
+                        content: 'Odio ex occaecati tempore sit. Sed quas saepe cumque est magni ut rerum omnis. Labore quidem temporibus expedita.'
+                        created_at: '2024-10-30T09:08:30.000000Z'
+                        updated_at: '2024-10-30T09:08:30.000000Z'
+                        image_url: /images/download.jpeg
+                      -
+                        id: 5
+                        user_id: 11
+                        image: /images/download.jpeg
+                        title: 'Qui molestiae voluptatibus voluptatibus nostrum eum.'
+                        description: 'Dolorum vel error cum sunt officia dicta. Maiores iusto sed quidem voluptas.'
+                        content: 'Sunt fugiat eaque pariatur exercitationem. Beatae eum soluta occaecati dicta. Asperiores nobis illum porro maxime pariatur.'
+                        created_at: '2024-10-30T09:08:30.000000Z'
+                        updated_at: '2024-10-30T09:08:30.000000Z'
+                        image_url: /images/download.jpeg
+                      -
+                        id: 6
+                        user_id: 1
+                        image: /images/download.jpeg
+                        title: test
+                        description: 'Harum error rerum dignissimos consequatur optio inventore sit. Inventore sunt deserunt eaque. Voluptates quibusdam inventore voluptatibus itaque quisquam explicabo.'
+                        content: test
+                        created_at: '2024-10-30T09:08:30.000000Z'
+                        updated_at: '2024-10-30T10:23:54.000000Z'
+                        image_url: /images/download.jpeg
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        user_id:
+                          type: integer
+                          example: 8
+                        image:
+                          type: string
+                          example: /images/download.jpeg
+                        title:
+                          type: string
+                          example: 'Sequi nihil debitis velit ratione voluptatem numquam et et.'
+                        description:
+                          type: string
+                          example: 'Necessitatibus et eum inventore mollitia. Aut deserunt et accusamus autem vel. Aliquid inventore et error labore dolor exercitationem possimus. Et veritatis alias deserunt ratione eum non qui et.'
+                        content:
+                          type: string
+                          example: 'Autem ipsam molestiae omnis eveniet reprehenderit aperiam rem. Voluptate et pariatur soluta aspernatur explicabo est. Repudiandae non dolorum assumenda.'
+                        created_at:
+                          type: string
+                          example: '2024-10-30T09:08:30.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-10-30T09:08:30.000000Z'
+                        image_url:
+                          type: string
+                          example: /images/download.jpeg
+                  first_page_url:
+                    type: string
+                    example: 'http://localhost/api/v1/allblog?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 6
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/v1/allblog?page=6'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=2'
+                        label: '2'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=3'
+                        label: '3'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=4'
+                        label: '4'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=5'
+                        label: '5'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=6'
+                        label: '6'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/allblog?page=2'
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                      properties:
+                        url:
+                          type: string
+                          example: null
+                        label:
+                          type: string
+                          example: '&laquo; Previous'
+                        active:
+                          type: boolean
+                          example: false
+                  next_page_url:
+                    type: string
+                    example: 'http://localhost/api/v1/allblog?page=2'
+                  path:
+                    type: string
+                    example: 'http://localhost/api/v1/allblog'
+                  per_page:
+                    type: integer
+                    example: 5
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 5
+                  total:
+                    type: integer
+                    example: 29
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/allblog/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1AllblogId
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Blog not found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Blog not found'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the allblog.'
+        example: eos
+        required: true
+        schema:
+          type: string
+  /api/v1/cart:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 52
+                  nullable: false
+                product_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: 14
+                  nullable: false
+                price:
+                  type: number
+                  description: ''
+                  example: 2265.7255
+                  nullable: false
+              required:
+                - quantity
+                - product_id
+                - price
+      security: []
+  /api/v1/cart/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/cart/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 1
+                  nullable: false
+              required:
+                - quantity
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the cart.'
+        example: quibusdam
+        required: true
+        schema:
+          type: string
+  '/api/v1/cart/{cart}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: cart
+        description: 'The cart.'
+        example: praesentium
+        required: true
+        schema:
+          type: string
+  /api/v1/fav:
+    get:
+      summary: ''
+      operationId: getApiV1Fav
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses:
+        201:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Favorite product added successfully'
+                properties:
+                  message:
+                    type: string
+                    example: 'Favorite product added successfully'
+        400:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'The product_id must be an integer'
+                  errors:
+                    product_id:
+                      - 'The product_id must be an integer'
+                properties:
+                  message:
+                    type: string
+                    example: 'The product_id must be an integer'
+                  errors:
+                    type: object
+                    properties:
+                      product_id:
+                        type: array
+                        example:
+                          - 'The product_id must be an integer'
+                        items:
+                          type: string
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'The ID of the product to be favorited.'
+                  example: 17
+                  nullable: false
+              required:
+                - product_id
+      security: []
+  /api/v1/fav/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/fav/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: atque
+                  nullable: false
+              required:
+                - product_id
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the fav.'
+        example: earum
+        required: true
+        schema:
+          type: string
+  '/api/v1/fav/{fav}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: fav
+        description: 'The fav.'
+        example: voluptatibus
+        required: true
+        schema:
+          type: string
+  /api/v1/aduser:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/aduser/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/aduser/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1AduserId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the aduser.'
+        example: maiores
+        required: true
+        schema:
+          type: string
+  '/api/v1/aduser/{aduser}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: aduser
+        description: 'The aduser.'
+        example: recusandae
+        required: true
+        schema:
+          type: string
+  /api/v1/adproduct:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: fibtgdthpwku
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Excepturi sed exercitationem optio voluptas sit.'
+                  nullable: false
+                stock:
+                  type: integer
+                  description: ''
+                  example: 3
+                  nullable: false
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image.'
+                  nullable: false
+                price:
+                  type: number
+                  description: ''
+                  example: 32531508.6
+                  nullable: false
+                name_ar:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: yzfga
+                  nullable: true
+              required:
+                - name
+                - description
+                - stock
+                - image
+                - price
+      security: []
+  /api/v1/adproduct/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/adproduct/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: k
+                  nullable: false
+                description:
+                  type: string
+                  description: ''
+                  example: 'Numquam animi debitis aut nulla.'
+                  nullable: false
+                stock:
+                  type: integer
+                  description: ''
+                  example: 14
+                  nullable: false
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image.'
+                  nullable: true
+                price:
+                  type: number
+                  description: ''
+                  example: 7206667.0
+                  nullable: false
+                name_ar:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: oszcronzw
+                  nullable: true
+              required:
+                - name
+                - description
+                - stock
+                - price
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the adproduct.'
+        example: omnis
+        required: true
+        schema:
+          type: string
+  '/api/v1/adproduct/{adproduct}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: adproduct
+        description: 'The adproduct.'
+        example: quia
+        required: true
+        schema:
+          type: string
+  /api/v1/cat:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data:
+                    -
+                      id: 1
+                      name: 'Cold Beverages'
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 2
+                      name: 'Hot Beverages'
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 3
+                      name: 'Healthy Drinks'
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 4
+                      name: MilkShake
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 5
+                      name: smoothie
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 6
+                      name: mojito
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 7
+                      name: Desserts
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 8
+                      name: Waffle
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 9
+                      name: test
+                      namear: منتج
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 10
+                      name: 1test6
+                      namear: منتج
+                      created_at: null
+                      updated_at: '2024-11-13T13:20:38.000000Z'
+                    -
+                      id: 12
+                      name: test6
+                      namear: test66w
+                      created_at: '2024-11-20T09:50:13.000000Z'
+                      updated_at: '2024-11-20T09:50:13.000000Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Cold Beverages'
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 2
+                        name: 'Hot Beverages'
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 3
+                        name: 'Healthy Drinks'
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 4
+                        name: MilkShake
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 5
+                        name: smoothie
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 6
+                        name: mojito
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 7
+                        name: Desserts
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 8
+                        name: Waffle
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 9
+                        name: test
+                        namear: منتج
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 10
+                        name: 1test6
+                        namear: منتج
+                        created_at: null
+                        updated_at: '2024-11-13T13:20:38.000000Z'
+                      -
+                        id: 12
+                        name: test6
+                        namear: test66w
+                        created_at: '2024-11-20T09:50:13.000000Z'
+                        updated_at: '2024-11-20T09:50:13.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Cold Beverages'
+                        namear:
+                          type: string
+                          example: منتج
+                        created_at:
+                          type: string
+                          example: null
+                        updated_at:
+                          type: string
+                          example: null
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: qvinxztfcdajkifu
+                  nullable: false
+                namear:
+                  type: string
+                  description: ''
+                  example: voluptatem
+                  nullable: true
+              required:
+                - name
+      security: []
+  /api/v1/cat/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/cat/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  data: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: string
+                    example: null
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: izdvj
+                  nullable: false
+                namear:
+                  type: string
+                  description: ''
+                  example: exercitationem
+                  nullable: true
+              required:
+                - name
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the cat.'
+        example: libero
+        required: true
+        schema:
+          type: string
+  '/api/v1/cat/{cat}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: ''
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: cat
+        description: 'The cat.'
+        example: voluptatem
+        required: true
+        schema:
+          type: string
+  /api/v1/directorder:
+    post:
+      summary: ''
+      operationId: postApiV1Directorder
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: 16
+                  nullable: false
+                quantity:
+                  type: integer
+                  description: 'Must be at least 1.'
+                  example: 5
+                  nullable: false
+                price:
+                  type: number
+                  description: ''
+                  example: 26.114
+                  nullable: false
+                phone:
+                  type: string
+                  description: ''
+                  example: magnam
+                  nullable: false
+                addressIndetail:
+                  type: string
+                  description: ''
+                  example: in
+                  nullable: false
+              required:
+                - product_id
+                - quantity
+                - price
+                - phone
+                - addressIndetail
+      security: []
+  /api/v1/rating:
+    get:
+      summary: ''
+      operationId: getApiV1Rating
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Rating
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: 20
+                  nullable: false
+                rating:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 5.'
+                  example: 1
+                  nullable: false
+                user_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: 13
+                  nullable: false
+              required:
+                - product_id
+                - rating
+                - user_id
+      security: []
+  /api/v1/rating/create:
+    get:
+      summary: ''
+      operationId: getApiV1RatingCreate
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/rating/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1RatingId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1RatingId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the products table.'
+                  example: 5
+                  nullable: false
+                rating:
+                  type: integer
+                  description: 'Must be at least 1. Must not be greater than 5.'
+                  example: 5
+                  nullable: false
+                user_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the users table.'
+                  example: 17
+                  nullable: false
+              required:
+                - product_id
+                - rating
+                - user_id
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1RatingId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the rating.'
+        example: accusamus
+        required: true
+        schema:
+          type: string
+  '/api/v1/rating/{rating}/edit':
+    get:
+      summary: ''
+      operationId: getApiV1RatingRatingEdit
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: rating
+        description: 'The rating.'
+        example: fugiat
+        required: true
+        schema:
+          type: string
+  /api/v1/menushop:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: chbgxqggtmicwsicn
+                  nullable: false
+                namear:
+                  type: string
+                  description: ''
+                  example: est
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image.'
+                  nullable: false
+                price:
+                  type: number
+                  description: ''
+                  example: 0.523441
+                  nullable: false
+                category_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the categories table.'
+                  example: 9
+                  nullable: false
+              required:
+                - name
+                - image
+                - price
+                - category_id
+      security: []
+  /api/v1/menushop/create:
+    get:
+      summary: 'Show the form for creating a new resource.'
+      operationId: showTheFormForCreatingANewResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/menushop/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      operationId: displayTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: ovuyljkx
+                  nullable: false
+                namear:
+                  type: string
+                  description: ''
+                  example: harum
+                  nullable: true
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be an image.'
+                  nullable: true
+                price:
+                  type: number
+                  description: ''
+                  example: 149.504
+                  nullable: false
+                category_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the categories table.'
+                  example: 4
+                  nullable: false
+              required:
+                - name
+                - price
+                - category_id
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the menushop.'
+        example: omnis
+        required: true
+        schema:
+          type: string
+  '/api/v1/menushop/{menushop}/edit':
+    get:
+      summary: 'Show the form for editing the specified resource.'
+      operationId: showTheFormForEditingTheSpecifiedResource
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: menushop
+        description: 'The menushop.'
+        example: est
+        required: true
+        schema:
+          type: string
+  '/api/v1/menutocat/{catid}':
+    get:
+      summary: ''
+      operationId: getApiV1MenutocatCatid
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: catid
+        description: ''
+        example: ea
+        required: true
+        schema:
+          type: string
+  '/api/v1/ratingproduct/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1RatingproductId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the ratingproduct.'
+        example: perferendis
+        required: true
+        schema:
+          type: string
+  /api/v1/about:
+    get:
+      summary: ''
+      operationId: getApiV1About
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "about-us Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. jp"
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1About
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/r:
+    get:
+      summary: ''
+      operationId: getApiV1R
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/allorders:
+    get:
+      summary: ''
+      operationId: getApiV1Allorders
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/specificorder/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1SpecificorderId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the specificorder.'
+        example: dolores
+        required: true
+        schema:
+          type: string
+  '/api/v1/specificuserorder/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1SpecificuserorderId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the specificuserorder.'
+        example: totam
+        required: true
+        schema:
+          type: string
+  /api/v1/stat:
+    get:
+      summary: ''
+      operationId: getApiV1Stat
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/updproduct2/{id}':
+    post:
+      summary: ''
+      operationId: postApiV1Updproduct2Id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the updproduct2.'
+        example: dolores
+        required: true
+        schema:
+          type: string
+  /api/v1/email:
+    get:
+      summary: ''
+      operationId: getApiV1Email
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Email
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                subject:
+                  type: string
+                  description: ''
+                  example: repellendus
+                  nullable: false
+                name:
+                  type: string
+                  description: ''
+                  example: sed
+                  nullable: false
+                content:
+                  type: string
+                  description: ''
+                  example: ad
+                  nullable: false
+              required:
+                - subject
+                - name
+                - content
+      security: []
+  /api/v1/lastfour:
+    get:
+      summary: ''
+      operationId: getApiV1Lastfour
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 60
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-11-13T08:45:47.000000Z'
+                    updated_at: '2024-11-13T08:45:47.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج2
+                    image_url: /images/download.jpeg
+                  -
+                    id: 49
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-10-23T12:16:04.000000Z'
+                    updated_at: '2024-10-23T12:17:53.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 48
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 5
+                    created_at: '2024-10-22T12:04:28.000000Z'
+                    updated_at: '2024-10-23T07:27:24.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 30
+                    name: 'voluptatem provident'
+                    description: 'Maxime rerum nisi ab aspernatur numquam. Ea rerum qui aperiam et harum. Dolor eos alias et eius non eos. Consequatur ut perspiciatis iste.'
+                    price: '25.79'
+                    stock: 81
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/lastarrivals:
+    get:
+      summary: ''
+      operationId: getApiV1Lastarrivals
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 60
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-11-13T08:45:47.000000Z'
+                    updated_at: '2024-11-13T08:45:47.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج2
+                    image_url: /images/download.jpeg
+                  -
+                    id: 49
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-10-23T12:16:04.000000Z'
+                    updated_at: '2024-10-23T12:17:53.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 48
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 5
+                    created_at: '2024-10-22T12:04:28.000000Z'
+                    updated_at: '2024-10-23T07:27:24.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 30
+                    name: 'voluptatem provident'
+                    description: 'Maxime rerum nisi ab aspernatur numquam. Ea rerum qui aperiam et harum. Dolor eos alias et eius non eos. Consequatur ut perspiciatis iste.'
+                    price: '25.79'
+                    stock: 81
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 29
+                    name: 'veritatis rerum'
+                    description: 'Recusandae repellendus eveniet reprehenderit cupiditate asperiores placeat. Consequatur unde blanditiis sunt qui iure a.'
+                    price: '26.19'
+                    stock: 21
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 28
+                    name: 'nostrum dicta'
+                    description: 'Nihil ab at repellendus. Fuga maxime et laborum id sint praesentium dolor. Eveniet tempore quia perspiciatis placeat voluptate modi optio. Illum numquam doloremque velit a qui ducimus et. Ea quia aut veniam velit voluptas eveniet et autem.'
+                    price: '13.16'
+                    stock: 10
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 27
+                    name: 'commodi enim'
+                    description: 'Porro aut est ad dolores accusamus consequatur quo. Dignissimos ducimus dolorum expedita est. Sequi sunt molestias sed. In est saepe quaerat dolore.'
+                    price: '48.46'
+                    stock: 136
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 26
+                    name: 'reiciendis pariatur'
+                    description: 'Odit ut velit esse delectus. Vero voluptas est assumenda quas non illo similique. Commodi molestias ut recusandae est et rem recusandae.'
+                    price: '86.25'
+                    stock: 74
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 25
+                    name: 'officiis suscipit'
+                    description: 'Cumque quasi occaecati molestiae eos sunt. Rerum aut est aut quod ab. Perferendis et consequatur et debitis sit nobis. Occaecati officiis rerum suscipit voluptas cumque tempora est rerum. Rerum ex et aut reprehenderit.'
+                    price: '8.63'
+                    stock: 146
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 24
+                    name: 'ullam voluptatem'
+                    description: 'Molestiae blanditiis non aut id blanditiis inventore. Quisquam amet placeat doloremque sunt. Nesciunt totam sit voluptas. Excepturi neque iste aliquam dolores dolor quia. Officiis animi sunt quas reiciendis earum.'
+                    price: '46.23'
+                    stock: 182
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-10-20T07:48:49.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 23
+                    name: 'aut culpa'
+                    description: 'Dolores et praesentium autem aut. Eum ut modi itaque enim. Suscipit delectus beatae consectetur velit veniam. Nemo porro et eligendi totam quis incidunt.'
+                    price: '21.39'
+                    stock: 13
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:12:52.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 22
+                    name: 'sit est'
+                    description: 'Architecto deserunt distinctio est non. Molestiae molestias fugit similique aut hic est. Nesciunt voluptate adipisci aliquid ad ut. Reprehenderit ipsa eos quibusdam corrupti culpa.'
+                    price: '51.86'
+                    stock: 33
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-10-20T07:48:49.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 21
+                    name: 'iusto inventore'
+                    description: 'Neque id rerum eaque et dolor facilis quia magni. Qui ipsum totam et hic voluptas autem. Assumenda voluptatum sit rerum omnis occaecati quod. Ea voluptas commodi et ea omnis enim.'
+                    price: '52.03'
+                    stock: 63
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:09:00.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 19
+                    name: 'hic culpa'
+                    description: 'Expedita voluptatum quis distinctio non illum accusamus tempora. Corporis eius ea quia esse ea voluptatem. Eaque dolores omnis et architecto.'
+                    price: '52.10'
+                    stock: 174
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 18
+                    name: 'ipsa et'
+                    description: 'Rerum et itaque voluptates doloremque consequatur. Recusandae ut nobis facere officia accusantium quod debitis. In accusantium placeat repellat quibusdam voluptatem unde.'
+                    price: '42.75'
+                    stock: 59
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 17
+                    name: 'ut sint'
+                    description: 'In velit dolores impedit dignissimos voluptas nisi. Blanditiis quod atque iusto dolore. Officiis tempore aut qui vitae. Quia aut rerum facere quisquam.'
+                    price: '93.75'
+                    stock: 57
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 16
+                    name: 'qui saepe'
+                    description: 'Error officiis quisquam rerum inventore quia. Neque officiis sint aut. Tenetur nemo et et deserunt. Dolorem quisquam beatae laborum impedit nobis temporibus fuga.'
+                    price: '68.97'
+                    stock: 110
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-24T12:10:16.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 14
+                    name: ttttest
+                    description: 'this is dddd'
+                    price: '111.00'
+                    stock: 18
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-30T08:05:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 13
+                    name: p13
+                    description: test
+                    price: '555.00'
+                    stock: 100
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-11-13T08:51:55.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: 'منتج جديد'
+                    image_url: /images/download.jpeg
+                  -
+                    id: 12
+                    name: 'qui facilis'
+                    description: 'Modi ipsam soluta voluptatibus. Dicta quia rerum enim excepturi eos ratione sunt. Sit ducimus in beatae.'
+                    price: '77.67'
+                    stock: 129
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-11-17T09:52:51.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 11
+                    name: 'facilis at'
+                    description: 'Labore eveniet suscipit molestias. Quisquam reiciendis maxime aut architecto iusto nemo alias. Quod sint fugit maiores sed nostrum eius quia quaerat.'
+                    price: '36.79'
+                    stock: 0
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-23T06:35:04.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/recommand:
+    get:
+      summary: ''
+      operationId: getApiV1Recommand
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 27
+                    name: 'commodi enim'
+                    description: 'Porro aut est ad dolores accusamus consequatur quo. Dignissimos ducimus dolorum expedita est. Sequi sunt molestias sed. In est saepe quaerat dolore.'
+                    price: '48.46'
+                    stock: 136
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 11
+                    name: 'facilis at'
+                    description: 'Labore eveniet suscipit molestias. Quisquam reiciendis maxime aut architecto iusto nemo alias. Quod sint fugit maiores sed nostrum eius quia quaerat.'
+                    price: '36.79'
+                    stock: 0
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-23T06:35:04.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 14
+                    name: ttttest
+                    description: 'this is dddd'
+                    price: '111.00'
+                    stock: 18
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-30T08:05:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 29
+                    name: 'veritatis rerum'
+                    description: 'Recusandae repellendus eveniet reprehenderit cupiditate asperiores placeat. Consequatur unde blanditiis sunt qui iure a.'
+                    price: '26.19'
+                    stock: 21
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/recommandation:
+    get:
+      summary: ''
+      operationId: getApiV1Recommandation
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 27
+                    name: 'commodi enim'
+                    description: 'Porro aut est ad dolores accusamus consequatur quo. Dignissimos ducimus dolorum expedita est. Sequi sunt molestias sed. In est saepe quaerat dolore.'
+                    price: '48.46'
+                    stock: 136
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 18
+                    name: 'ipsa et'
+                    description: 'Rerum et itaque voluptates doloremque consequatur. Recusandae ut nobis facere officia accusantium quod debitis. In accusantium placeat repellat quibusdam voluptatem unde.'
+                    price: '42.75'
+                    stock: 59
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 23
+                    name: 'aut culpa'
+                    description: 'Dolores et praesentium autem aut. Eum ut modi itaque enim. Suscipit delectus beatae consectetur velit veniam. Nemo porro et eligendi totam quis incidunt.'
+                    price: '21.39'
+                    stock: 13
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:12:52.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 17
+                    name: 'ut sint'
+                    description: 'In velit dolores impedit dignissimos voluptas nisi. Blanditiis quod atque iusto dolore. Officiis tempore aut qui vitae. Quia aut rerum facere quisquam.'
+                    price: '93.75'
+                    stock: 57
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 16
+                    name: 'qui saepe'
+                    description: 'Error officiis quisquam rerum inventore quia. Neque officiis sint aut. Tenetur nemo et et deserunt. Dolorem quisquam beatae laborum impedit nobis temporibus fuga.'
+                    price: '68.97'
+                    stock: 110
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-24T12:10:16.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 48
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 5
+                    created_at: '2024-10-22T12:04:28.000000Z'
+                    updated_at: '2024-10-23T07:27:24.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 26
+                    name: 'reiciendis pariatur'
+                    description: 'Odit ut velit esse delectus. Vero voluptas est assumenda quas non illo similique. Commodi molestias ut recusandae est et rem recusandae.'
+                    price: '86.25'
+                    stock: 74
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 30
+                    name: 'voluptatem provident'
+                    description: 'Maxime rerum nisi ab aspernatur numquam. Ea rerum qui aperiam et harum. Dolor eos alias et eius non eos. Consequatur ut perspiciatis iste.'
+                    price: '25.79'
+                    stock: 81
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 21
+                    name: 'iusto inventore'
+                    description: 'Neque id rerum eaque et dolor facilis quia magni. Qui ipsum totam et hic voluptas autem. Assumenda voluptatum sit rerum omnis occaecati quod. Ea voluptas commodi et ea omnis enim.'
+                    price: '52.03'
+                    stock: 63
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:09:00.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 24
+                    name: 'ullam voluptatem'
+                    description: 'Molestiae blanditiis non aut id blanditiis inventore. Quisquam amet placeat doloremque sunt. Nesciunt totam sit voluptas. Excepturi neque iste aliquam dolores dolor quia. Officiis animi sunt quas reiciendis earum.'
+                    price: '46.23'
+                    stock: 182
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-10-20T07:48:49.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 25
+                    name: 'officiis suscipit'
+                    description: 'Cumque quasi occaecati molestiae eos sunt. Rerum aut est aut quod ab. Perferendis et consequatur et debitis sit nobis. Occaecati officiis rerum suscipit voluptas cumque tempora est rerum. Rerum ex et aut reprehenderit.'
+                    price: '8.63'
+                    stock: 146
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 12
+                    name: 'qui facilis'
+                    description: 'Modi ipsam soluta voluptatibus. Dicta quia rerum enim excepturi eos ratione sunt. Sit ducimus in beatae.'
+                    price: '77.67'
+                    stock: 129
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-11-17T09:52:51.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 29
+                    name: 'veritatis rerum'
+                    description: 'Recusandae repellendus eveniet reprehenderit cupiditate asperiores placeat. Consequatur unde blanditiis sunt qui iure a.'
+                    price: '26.19'
+                    stock: 21
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 14
+                    name: ttttest
+                    description: 'this is dddd'
+                    price: '111.00'
+                    stock: 18
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-30T08:05:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 13
+                    name: p13
+                    description: test
+                    price: '555.00'
+                    stock: 100
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-11-13T08:51:55.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: 'منتج جديد'
+                    image_url: /images/download.jpeg
+                  -
+                    id: 11
+                    name: 'facilis at'
+                    description: 'Labore eveniet suscipit molestias. Quisquam reiciendis maxime aut architecto iusto nemo alias. Quod sint fugit maiores sed nostrum eius quia quaerat.'
+                    price: '36.79'
+                    stock: 0
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-23T06:35:04.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 60
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-11-13T08:45:47.000000Z'
+                    updated_at: '2024-11-13T08:45:47.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج2
+                    image_url: /images/download.jpeg
+                  -
+                    id: 49
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-10-23T12:16:04.000000Z'
+                    updated_at: '2024-10-23T12:17:53.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 28
+                    name: 'nostrum dicta'
+                    description: 'Nihil ab at repellendus. Fuga maxime et laborum id sint praesentium dolor. Eveniet tempore quia perspiciatis placeat voluptate modi optio. Illum numquam doloremque velit a qui ducimus et. Ea quia aut veniam velit voluptas eveniet et autem.'
+                    price: '13.16'
+                    stock: 10
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 22
+                    name: 'sit est'
+                    description: 'Architecto deserunt distinctio est non. Molestiae molestias fugit similique aut hic est. Nesciunt voluptate adipisci aliquid ad ut. Reprehenderit ipsa eos quibusdam corrupti culpa.'
+                    price: '51.86'
+                    stock: 33
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-10-20T07:48:49.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 19
+                    name: 'hic culpa'
+                    description: 'Expedita voluptatum quis distinctio non illum accusamus tempora. Corporis eius ea quia esse ea voluptatem. Eaque dolores omnis et architecto.'
+                    price: '52.10'
+                    stock: 174
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/bestselling:
+    get:
+      summary: ''
+      operationId: getApiV1Bestselling
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 11
+                    name: 'facilis at'
+                    description: 'Labore eveniet suscipit molestias. Quisquam reiciendis maxime aut architecto iusto nemo alias. Quod sint fugit maiores sed nostrum eius quia quaerat.'
+                    price: '36.79'
+                    stock: 0
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-23T06:35:04.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 14
+                    name: ttttest
+                    description: 'this is dddd'
+                    price: '111.00'
+                    stock: 18
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-30T08:05:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 23
+                    name: 'aut culpa'
+                    description: 'Dolores et praesentium autem aut. Eum ut modi itaque enim. Suscipit delectus beatae consectetur velit veniam. Nemo porro et eligendi totam quis incidunt.'
+                    price: '21.39'
+                    stock: 13
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:12:52.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 27
+                    name: 'commodi enim'
+                    description: 'Porro aut est ad dolores accusamus consequatur quo. Dignissimos ducimus dolorum expedita est. Sequi sunt molestias sed. In est saepe quaerat dolore.'
+                    price: '48.46'
+                    stock: 136
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/bestsell:
+    get:
+      summary: ''
+      operationId: getApiV1Bestsell
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                example:
+                  -
+                    id: 11
+                    name: 'facilis at'
+                    description: 'Labore eveniet suscipit molestias. Quisquam reiciendis maxime aut architecto iusto nemo alias. Quod sint fugit maiores sed nostrum eius quia quaerat.'
+                    price: '36.79'
+                    stock: 0
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-23T06:35:04.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 12
+                    name: 'qui facilis'
+                    description: 'Modi ipsam soluta voluptatibus. Dicta quia rerum enim excepturi eos ratione sunt. Sit ducimus in beatae.'
+                    price: '77.67'
+                    stock: 129
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-11-17T09:52:51.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 14
+                    name: ttttest
+                    description: 'this is dddd'
+                    price: '111.00'
+                    stock: 18
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-30T08:05:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 17
+                    name: 'ut sint'
+                    description: 'In velit dolores impedit dignissimos voluptas nisi. Blanditiis quod atque iusto dolore. Officiis tempore aut qui vitae. Quia aut rerum facere quisquam.'
+                    price: '93.75'
+                    stock: 57
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 18
+                    name: 'ipsa et'
+                    description: 'Rerum et itaque voluptates doloremque consequatur. Recusandae ut nobis facere officia accusantium quod debitis. In accusantium placeat repellat quibusdam voluptatem unde.'
+                    price: '42.75'
+                    stock: 59
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 19
+                    name: 'hic culpa'
+                    description: 'Expedita voluptatum quis distinctio non illum accusamus tempora. Corporis eius ea quia esse ea voluptatem. Eaque dolores omnis et architecto.'
+                    price: '52.10'
+                    stock: 174
+                    created_at: '2024-10-20T06:02:50.000000Z'
+                    updated_at: '2024-10-20T06:02:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 21
+                    name: 'iusto inventore'
+                    description: 'Neque id rerum eaque et dolor facilis quia magni. Qui ipsum totam et hic voluptas autem. Assumenda voluptatum sit rerum omnis occaecati quod. Ea voluptas commodi et ea omnis enim.'
+                    price: '52.03'
+                    stock: 63
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:09:00.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 23
+                    name: 'aut culpa'
+                    description: 'Dolores et praesentium autem aut. Eum ut modi itaque enim. Suscipit delectus beatae consectetur velit veniam. Nemo porro et eligendi totam quis incidunt.'
+                    price: '21.39'
+                    stock: 13
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-11-19T15:12:52.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 24
+                    name: 'ullam voluptatem'
+                    description: 'Molestiae blanditiis non aut id blanditiis inventore. Quisquam amet placeat doloremque sunt. Nesciunt totam sit voluptas. Excepturi neque iste aliquam dolores dolor quia. Officiis animi sunt quas reiciendis earum.'
+                    price: '46.23'
+                    stock: 182
+                    created_at: '2024-10-20T07:48:49.000000Z'
+                    updated_at: '2024-10-20T07:48:49.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 27
+                    name: 'commodi enim'
+                    description: 'Porro aut est ad dolores accusamus consequatur quo. Dignissimos ducimus dolorum expedita est. Sequi sunt molestias sed. In est saepe quaerat dolore.'
+                    price: '48.46'
+                    stock: 136
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 30
+                    name: 'voluptatem provident'
+                    description: 'Maxime rerum nisi ab aspernatur numquam. Ea rerum qui aperiam et harum. Dolor eos alias et eius non eos. Consequatur ut perspiciatis iste.'
+                    price: '25.79'
+                    stock: 81
+                    created_at: '2024-10-20T07:48:50.000000Z'
+                    updated_at: '2024-10-20T07:48:50.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 48
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 5
+                    created_at: '2024-10-22T12:04:28.000000Z'
+                    updated_at: '2024-10-23T07:27:24.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+                  -
+                    id: 49
+                    name: 'this is product'
+                    description: 'this is desc'
+                    price: '327.00'
+                    stock: 69
+                    created_at: '2024-10-23T12:16:04.000000Z'
+                    updated_at: '2024-10-23T12:17:53.000000Z'
+                    image: /images/download.jpeg
+                    name_ar: منتج
+                    image_url: /images/download.jpeg
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/orderal:
+    post:
+      summary: ''
+      operationId: postApiV1Orderal
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/userinfo:
+    get:
+      summary: ''
+      operationId: getApiV1Userinfo
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/orderstatus/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1OrderstatusId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the orderstatus.'
+        example: ipsa
+        required: true
+        schema:
+          type: string
+  /api/v1/filterbasedorderstatus:
+    post:
+      summary: ''
+      operationId: postApiV1Filterbasedorderstatus
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/visits:
+    get:
+      summary: ''
+      operationId: getApiV1Visits
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  count: 8
+                properties:
+                  count:
+                    type: integer
+                    example: 8
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/usercof/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1UsercofId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the usercof.'
+        example: debitis
+        required: true
+        schema:
+          type: string
+  /api/v1/revenue:
+    get:
+      summary: ''
+      operationId: getApiV1Revenue
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: '1 Security'
+    description: "\nAPIs for user registration and login and logout"
+  -
+    name: '2 Products'
+    description: "\nAPIs for viewing products"
+  -
+    name: '3 Menus'
+    description: "\nAPIs for managing menus"
+  -
+    name: '111 Activity Log'
+    description: ''
+  -
+    name: Endpoints
+    description: ''
